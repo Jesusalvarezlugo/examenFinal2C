@@ -8,6 +8,8 @@ namespace examenFinal2.Servicios
 {
     internal class MenuImplementacion : MenuInterfaz
     {
+        
+
         public int mostrarMenuYSeleccionPrin()
         {
             int opcion;
@@ -19,6 +21,37 @@ namespace examenFinal2.Servicios
             Console.WriteLine("#############################");
             Console.WriteLine("elija una opcion: ");
             opcion=Console.ReadKey(true).KeyChar-('0');
+
+            return opcion;
+        }
+
+        public int mostrarMenuYSeleccionListado()
+        {
+            int opcion;
+
+            Console.WriteLine("#############################");
+            Console.WriteLine("0. Volver al menu principal");
+            Console.WriteLine("1. Mostrar consultas");
+            Console.WriteLine("2. Imprimir consultas");
+            Console.WriteLine("#############################");
+            Console.WriteLine("elija una opcion: ");
+            opcion = Console.ReadKey(true).KeyChar - ('0');
+
+            return opcion;
+        }
+
+        public int mostrarMenuYSeleccioneSp()
+        {
+            int opcion;
+
+            Console.WriteLine("#######################");
+            Console.WriteLine("0. Volver al menu anterior");
+            Console.WriteLine("1. Psicologia");
+            Console.WriteLine("2. Traumatologia");
+            Console.WriteLine("2. Fisioterapia");
+            Console.WriteLine("#######################");
+            Console.WriteLine("Introduzca una opcion: ");
+            opcion = Console.ReadKey(true).KeyChar - ('0');
 
             return opcion;
         }

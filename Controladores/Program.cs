@@ -17,6 +17,11 @@ namespace examenFinal2.Controladores
 
             
             fi.cargaInicial(listaCitas,rutaArchivo);
+
+            foreach(CitaDto cita in listaCitas)
+            {
+                Console.WriteLine(cita.ToString());
+            }
             try
             {
                 while (!cerrarMenu)
@@ -27,10 +32,12 @@ namespace examenFinal2.Controladores
                     {
                         case 0:
                             Console.WriteLine("[INFO] Se cerrara la aplicacion.");
+                            cerrarMenu = true;
                             break;
 
                         case 1:
                             Console.WriteLine("[INFO] Registro de llegada.");
+                            oi.registroLlegada(listaCitas);
                             break;
                     }
                 }

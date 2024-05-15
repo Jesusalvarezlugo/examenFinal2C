@@ -45,5 +45,13 @@ namespace examenFinal2.Dtos
             this.fchCita = fchCita;
             this.asistenciaCita = asistenciaCita;
         }
+
+
+        override
+            public string ToString()
+        {
+            string texto = this.dniPaciente+";"+this.nombre+";"+this.apellidos+";"+this.especialidad+";"+this.fchCita+";"+this.asistenciaCita+"\n";
+            return texto;
+        }
     }
 }

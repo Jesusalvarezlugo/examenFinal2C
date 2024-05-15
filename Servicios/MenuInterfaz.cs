@@ -9,5 +9,9 @@ namespace examenFinal2.Servicios
     internal interface MenuInterfaz
     {
         public int mostrarMenuYSeleccionPrin();
+
+        public int mostrarMenuYSeleccionListado();
+
+        public int mostrarMenuYSeleccioneSp();
     }
 }
