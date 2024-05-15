@@ -113,7 +113,7 @@ namespace examenFinal2.Servicios
             
         }
 
-        private void mostrarConsultas(List<CitaDto> listaAntgCitas)
+        private  void mostrarConsultas(List<CitaDto> listaAntgCitas)
         {
             elegirEspecialidad();
             string fechaAPedir;

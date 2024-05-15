@@ -10,5 +10,7 @@ namespace examenFinal2.Servicios
     internal interface FicheroInterfaz
     {
         public void cargaInicial(List<CitaDto> listaAntgCitas, string ruta);
+
+        public void imprimirConsultas(List<CitaDto> listaAntgCitas);
     }
 }

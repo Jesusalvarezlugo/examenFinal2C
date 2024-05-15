@@ -36,5 +36,26 @@ namespace examenFinal2.Servicios
             }
 
         }
+
+        public void imprimirConsultas(List<CitaDto> listaAntgCitas,string rutaArchivo)
+        {
+            try
+            {
+                StreamWriter sw = new StreamWriter(rutaArchivo);
+                
+                foreach(CitaDto cita in listaAntgCitas)
+                {
+                    if (cita.AsistenciaCita == true)
+                    {
+                        sw.WriteLine(cita.ToString());
+                    }
+                }
+                sw.Close();
+            }catch(IOException e)
+            {
+                Console.WriteLine("Error al imprimir consultas.");
+                Console.WriteLine(e.ToString());
+            }
+        }
     }
 }

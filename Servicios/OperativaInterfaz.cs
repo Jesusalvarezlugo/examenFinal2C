@@ -12,6 +12,7 @@ namespace examenFinal2.Servicios
         public void registroLlegada(List<CitaDto> listaAntgCitas);
 
         public void listadoConsultas(List<CitaDto> listaAntgCitas);
+        
 
         
     }
