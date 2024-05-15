@@ -129,6 +129,29 @@ namespace examenFinal2.Servicios
             }
         }
 
+        private void imprimirConsultasCompleto(List<CitaDto> listaAntgCitas)
+        {
+            DateTime fechaAPedir;
+            FicheroInterfaz fi = new FicheroImplementacion();
+            string rutaArchivo;
+            string fechaFormateada;
+
+            Console.WriteLine("Introduce la fecha para imprimir las consultas:(dd-MM-yyyy) ");
+            fechaAPedir = Convert.ToDateTime(Console.ReadLine());
+            
+
+            foreach (CitaDto cita in listaAntgCitas)
+            {
+                if (fechaAPedir.ToString("dd-MM-yyyy") == cita.FchCita.ToString("dd-MM-yyyy"))
+                {
+
+                    fi.imprimirConsultas(listaAntgCitas);
+                }
+              
+            }
+            
+        }
+
 
     }
 }
