@@ -18,7 +18,12 @@ namespace examenFinal2.Servicios
             Console.WriteLine("Introduce el dni para consultar su cita: ");
             dniAPedir = Console.ReadLine();
 
-            
+            while (!validarDni(dniAPedir))
+            {
+                Console.WriteLine("[ERROR] dni no valido");
+                Console.WriteLine("Introduzca un dni valido: ");
+                dniAPedir = Console.ReadLine();
+            }
 
             DateTime fechaActual= DateTime.Now;
             bool aux = false;
@@ -43,15 +48,17 @@ namespace examenFinal2.Servicios
 
         private bool validarDni(string dni)
         {
-            string[] letrasDni = {"T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","L","C","K","E"};
+            string[] letrasDni = {"T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","L","C","K","E",};
 
             string letraDniProporcionada=dni.Substring(dni.Length-1);
             int numDni=Convert.ToInt32(dni.Substring(0,dni.Length-1));
 
-            string letraDni = letrasDni[numDni%23];
-           
+            int valorResto = numDni%23;
+
+            return letrasDni[valorResto].Equals(letraDniProporcionada);
+
+
             
-            return true;
             
         }
 
@@ -69,6 +76,7 @@ namespace examenFinal2.Servicios
                 {
                     case 0:
                         Console.WriteLine("[INFO] Se volvera al menu principal");
+                        cerrarMenu = true;
                         break;
 
                     case 1:
@@ -79,50 +87,61 @@ namespace examenFinal2.Servicios
 
                     case 2:
                         Console.WriteLine("[INFO] se imprimiran las consultas");
+                        imprimirConsultasCompleto(listaAntgCitas);
+                        break;
+
+                    default:
+                        Console.WriteLine("[ERROR] opcion introducida no valida.");
                         break;
                 }
             }
         }
 
-        private void elegirEspecialidad()
+        private string elegirEspecialidad()
         {
             MenuInterfaz mi = new MenuImplementacion();
             CitaDto cita = new CitaDto();
             int opcionEsp;
+            string especialidad="";
+
+            
 
             opcionEsp = mi.mostrarMenuYSeleccioneSp();
 
             switch (opcionEsp)
             {
                 case 1:
-                    Console.WriteLine("Psicologia");
-                     cita.Especialidad = "Psicologia";
+                    Console.WriteLine("Psicología");
+                    especialidad = "Psicología";
+                    
                     break;
 
                 case 2:
                     Console.WriteLine("Traumatologia");
-                     cita.Especialidad = "Traumatologia";
+                     especialidad = "Traumatologia";
                     break;
 
                 case 3:
                     Console.WriteLine("Fisioterapia");
-                     cita.Especialidad = "Fisioterapia";
+                     especialidad = "Fisioterapia";
                     break;
             }
+
+            return especialidad;
 
             
         }
 
         private  void mostrarConsultas(List<CitaDto> listaAntgCitas)
         {
-            elegirEspecialidad();
+            string especialidad=elegirEspecialidad();
             string fechaAPedir;
             Console.WriteLine("Elija una fecha (dd-MM-yyyy)");
             fechaAPedir = Console.ReadLine();
 
             foreach(CitaDto cita in listaAntgCitas)
             {
-                if (fechaAPedir == cita.FchCita.ToString("dd-MM-yyyy"))
+                if (fechaAPedir == cita.FchCita.ToString("dd-MM-yyyy")&&cita.Especialidad==especialidad)
                 {
                     Console.WriteLine(cita.ToString());
                 }
@@ -134,18 +153,21 @@ namespace examenFinal2.Servicios
             DateTime fechaAPedir;
             FicheroInterfaz fi = new FicheroImplementacion();
             string rutaArchivo;
-            string fechaFormateada;
+            string especialidad = elegirEspecialidad();
+            
 
             Console.WriteLine("Introduce la fecha para imprimir las consultas:(dd-MM-yyyy) ");
             fechaAPedir = Convert.ToDateTime(Console.ReadLine());
+
+            rutaArchivo="citasConAsistencia-"+fechaAPedir.ToString("ddMMyyyy")+".txt";
             
 
             foreach (CitaDto cita in listaAntgCitas)
             {
-                if (fechaAPedir.ToString("dd-MM-yyyy") == cita.FchCita.ToString("dd-MM-yyyy"))
+                if (fechaAPedir.ToString("dd-MM-yyyy") == cita.FchCita.ToString("dd-MM-yyyy")&&especialidad==cita.Especialidad)
                 {
 
-                    fi.imprimirConsultas(listaAntgCitas);
+                    fi.imprimirConsultas(listaAntgCitas,rutaArchivo);
                 }
               
             }

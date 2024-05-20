@@ -28,6 +28,8 @@ namespace examenFinal2.Servicios
 
                     listaAntgCitas.Add(laCita);
                 }
+
+                
             }
             catch (IOException ex)
             {
@@ -36,6 +38,7 @@ namespace examenFinal2.Servicios
             }
 
         }
+
 
         public void imprimirConsultas(List<CitaDto> listaAntgCitas,string rutaArchivo)
         {
@@ -56,6 +59,27 @@ namespace examenFinal2.Servicios
                 Console.WriteLine("Error al imprimir consultas.");
                 Console.WriteLine(e.ToString());
             }
+        }
+
+        public void ficheroLog(string texto)
+        {
+            try
+            {
+                DateTime fechaActual = DateTime.Today;
+
+                string rutaArchivo = "log-" + fechaActual.ToString("ddMMyyyy") + ".txt";
+
+                StreamWriter sw = new StreamWriter(rutaArchivo, true);
+
+                sw.WriteLine(texto);
+
+                sw.Close();
+            }
+            catch(IOException e)
+            {
+                Console.WriteLine("Error al escribir en el fichero log");
+            }
+            
         }
     }
 }

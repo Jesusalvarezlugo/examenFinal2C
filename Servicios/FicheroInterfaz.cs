@@ -11,6 +11,8 @@ namespace examenFinal2.Servicios
     {
         public void cargaInicial(List<CitaDto> listaAntgCitas, string ruta);
 
-        public void imprimirConsultas(List<CitaDto> listaAntgCitas);
+        public void imprimirConsultas(List<CitaDto> listaAntgCitas,string rutaArchivo);
+
+        public void ficheroLog(string texto);
     }
 }

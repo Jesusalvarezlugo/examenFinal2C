@@ -32,12 +32,18 @@ namespace examenFinal2.Controladores
                     {
                         case 0:
                             Console.WriteLine("[INFO] Se cerrara la aplicacion.");
+                            fi.ficheroLog("[INFO] Se cerrara la aplicacion.");
                             cerrarMenu = true;
                             break;
 
                         case 1:
                             Console.WriteLine("[INFO] Registro de llegada.");
                             oi.registroLlegada(listaCitas);
+                            break;
+
+                        case 2:
+                            Console.WriteLine("[INFO] Listado de consultas.");
+                            oi.listadoConsultas(listaCitas);
                             break;
                     }
                 }
